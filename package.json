@@ -1,0 +1,25 @@
+{
+  "name": "@acastellon/utils",
+  "version": "1.0.0",
+  "description": "Common funtion utils for javascript",
+  "main": "utils.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonio-castellon/module-utils.git"
+  },
+  "keywords": [
+    "utils",
+    "javascript",
+    "common",
+    "tools"
+  ],
+  "author": "Antonio Castellon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/antonio-castellon/module-utils/issues"
+  },
+  "homepage": "https://github.com/antonio-castellon/module-utils#readme"
+}
