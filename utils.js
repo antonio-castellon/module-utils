@@ -11,6 +11,7 @@ module.exports = function() {
 
   const model = {};
 
+  const sqlInjectionKeys = [ 'UPDATE', 'DROP', 'DELETE', 'INSERT' ];
 
   //
   // ASSIGNATIONS
@@ -23,6 +24,7 @@ module.exports = function() {
   model.isNotUndefined = isNotUndefined;
   model.isUndefined = isUndefined;
   model.isAnObject = isAnObject;
+  model.isAnySQLInjection = isAnySQLInjection;
   
   
   // BODY 
@@ -68,6 +70,10 @@ module.exports = function() {
 
 		function isAnObject(data){
 		  return (typeof data == 'object');
+		}
+
+		function isAnySQLInjection(data){
+			return sqlInjectionKeys.some((el) => data.contains(el));
 		}
 
 
