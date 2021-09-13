@@ -73,7 +73,7 @@ module.exports = function() {
 		}
 
 		function isAnySQLInjection(data){
-			return sqlInjectionKeys.some((el) => data.contains(el));
+			return (sqlInjectionKeys.some((el) => data.includes(el)));
 		}
 
 
