@@ -11,7 +11,7 @@ module.exports = function() {
 
   const model = {};
 
-  const sqlInjectionKeys = [ 'UPDATE', 'DROP', 'DELETE', 'INSERT' ];
+  const sqlInjectionKeys = [ 'UPDATE', 'DROP', 'DELETE', 'INSERT', 'CREATE' ];
 
   //
   // ASSIGNATIONS
