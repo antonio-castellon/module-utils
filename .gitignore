@@ -1,2 +1,18 @@
+# dependencies
+/node_modules/
 
-module-utils.iml
+# IDE
+*.iml
+
+# lockfiles
+package-lock.json
+
+# local configs
+/config.*.js
+/config.*.json
+
+# env
+.env*
+
+# logs
+*.log
