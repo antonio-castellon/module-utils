@@ -1,10 +1,10 @@
 {
   "name": "@acastellon/utils",
-  "version": "1.0.3",
-  "description": "Common funtion utils for javascript",
+  "version": "1.1.0",
+  "description": "Common function utils for javascript",
   "main": "utils.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/antonio-castellon/module-utils/issues"
   },
-  "homepage": "https://github.com/antonio-castellon/module-utils#readme"
+  "homepage": "https://github.com/antonio-castellon/module-utils#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }

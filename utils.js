@@ -3,7 +3,7 @@
 //
 // Common minor utilities 
 //
-// Castellon.CH - 2020 (c)
+// Castellon.CH - 2020-2026 (c)
 // Author: Antonio Castellon
 //
 
@@ -11,12 +11,9 @@ module.exports = function() {
 
   const model = {};
 
-  const sqlInjectionKeys = [ 'UPDATE', 'DROP', 'DELETE', 'INSERT', 'CREATE' ];
+  const sqlInjectionKeys = ['UPDATE', 'DROP', 'DELETE', 'INSERT', 'CREATE'];
 
-  //
   // ASSIGNATIONS
-  //
-
   model.existProperty = existProperty;
   model.isNotNull = isNotNull;
   model.isEmpty = isEmpty;
@@ -25,58 +22,50 @@ module.exports = function() {
   model.isUndefined = isUndefined;
   model.isAnObject = isAnObject;
   model.isAnySQLInjection = isAnySQLInjection;
-  
-  
-  // BODY 
 
+  function existProperty(prop) {
+    return (prop != null
+      && typeof prop != 'undefined'
+      && (
+        (typeof prop == 'string' && prop.length > 0)
+        || (typeof prop == 'number')
+      )
+    );
+  }
 
+  function isNotNull(data) {
+    return data != null && isNotEmpty(data);
+  }
 
-		function existProperty(prop) {
-			return (  prop != null
-				&& typeof prop != 'undefined'
-				&& (
-					(typeof prop == 'string' && prop.length > 0 )
-					||
-					(typeof prop == 'number')
-					)
-			);
-		}
+  function isEmpty(data) {
+    return !isNotEmpty(data);
+  }
 
-		function isNotNull(data){
-		  return data != null && isNotEmpty(data);
-		}
+  function isNotEmpty(data) {
+    return (isNotUndefined(data)
+      && (
+        (isAnObject(data) && Object.keys(data).length != 0)
+        || (!isAnObject(data) && (('' + data).length > 0))
+      )
+    );
+  }
 
-		function isEmpty(data){
-		  return !isNotEmpty(data);
-		}
+  function isNotUndefined(data) {
+    return (typeof data != 'undefined') && (data != null);
+  }
 
-		function isNotEmpty(data){
-		  return (isNotUndefined(data)
-				   && (
-					   (isAnObject(data) && Object.keys(data).length != 0)
-					   || (!isAnObject(data) && (('' + data).length > 0))
-					   )
-				);
-		}
+  function isUndefined(data) {
+    return (typeof data == 'undefined');
+  }
 
-		function isNotUndefined(data){
-		  return (typeof data != 'undefined') && (data != null);
-		}
+  function isAnObject(data) {
+    return (typeof data == 'object');
+  }
 
-		function isUndefined(data){
-		  return (typeof data == 'undefined');
-		}
+  function isAnySQLInjection(data) {
+    if (typeof data != 'string') return false;
+    return sqlInjectionKeys.some((el) => data.includes(el));
+  }
 
-
-		function isAnObject(data){
-		  return (typeof data == 'object');
-		}
-
-		function isAnySQLInjection(data){
-			return (sqlInjectionKeys.some((el) => data.includes(el)));
-		}
-
-
-	return model;
-
-}
+  return model;
+};
