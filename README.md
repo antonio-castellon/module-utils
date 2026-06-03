@@ -13,13 +13,21 @@ npm install @acastellon/utils
 ```js
 const utils = require('@acastellon/utils')();
 
-console.log(utils.isNotEmpty('foo'));
-console.log(utils.isAnySQLInjection('DROP TABLE'));
+if (utils.isNotEmpty(someValue)) { ... }
+if (utils.isAnySQLInjection(userInput)) { throw new Error('injection'); }
+console.log( utils.existProperty(foo) );
 ```
 
 ## API
 
-- existProperty, isNotNull, isEmpty, isNotEmpty, isNotUndefined, isUndefined, isAnObject, isAnySQLInjection
+- `existProperty(prop)`
+- `isNotNull(data)`
+- `isEmpty(data)`
+- `isNotEmpty(data)`
+- `isNotUndefined(data)`
+- `isUndefined(data)`
+- `isAnObject(data)`
+- `isAnySQLInjection(data)`
 
 ## License
 

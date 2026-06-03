@@ -24,5 +24,10 @@
   "homepage": "https://github.com/antonio-castellon/module-utils#readme",
   "engines": {
     "node": ">=18.0.0"
-  }
+  },
+  "files": [
+    "utils.js",
+    "README.md",
+    "LICENSE"
+  ]
 }
