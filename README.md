@@ -22,27 +22,101 @@ console.log( utils.existProperty(foo) );
 
 All functions are attached to the returned model.
 
-### `existProperty(prop: any): boolean`
+### existProperty(prop: any): boolean
+
 Returns true if prop is non-null, defined, and either a non-empty string or a number.
 
-### `isNotNull(data: any): boolean`
+**Example:**
+
+```js
+const utils = require('@acastellon/utils')();
+
+console.log(utils.existProperty('hello')); // true
+const config = { host: 'localhost' };
+console.log(utils.existProperty(config.host)); // true
+console.log(utils.existProperty('')); // false
+```
+
+### isNotNull(data: any): boolean
+
 Alias-ish for defined + not empty.
 
-### `isEmpty(data: any): boolean`
+**Example:**
+
+```js
+const utils = require('@acastellon/utils')();
+console.log(utils.isNotNull('value')); // true
+console.log(utils.isNotNull(null)); // false
+```
+
+### isEmpty(data: any): boolean
+
 Negation of isNotEmpty.
 
-### `isNotEmpty(data: any): boolean`
+**Example:**
+
+```js
+const utils = require('@acastellon/utils')();
+console.log(utils.isEmpty('')); // true
+console.log(utils.isEmpty({})); // true
+```
+
+### isNotEmpty(data: any): boolean
+
 True for non-undefined/non-null values that are either non-empty objects (keys) or have string length >0.
 
-### `isNotUndefined(data: any): boolean`
+**Example:**
 
-### `isUndefined(data: any): boolean`
+```js
+const utils = require('@acastellon/utils')();
+console.log(utils.isNotEmpty({a:1})); // true
+console.log(utils.isNotEmpty([])); // false
+console.log(utils.isNotEmpty(42)); // true
+```
 
-### `isAnObject(data: any): boolean`
+### isNotUndefined(data: any): boolean
+
+**Example:**
+
+```js
+const utils = require('@acastellon/utils')();
+console.log(utils.isNotUndefined(0)); // true
+console.log(utils.isNotUndefined(undefined)); // false
+```
+
+### isUndefined(data: any): boolean
+
+**Example:**
+
+```js
+const utils = require('@acastellon/utils')();
+console.log(utils.isUndefined(undefined)); // true
+```
+
+### isAnObject(data: any): boolean
+
 `typeof === 'object'` (arrays and null-ish are true here).
 
-### `isAnySQLInjection(data: any): boolean`
+**Example:**
+
+```js
+const utils = require('@acastellon/utils')();
+console.log(utils.isAnObject({})); // true
+console.log(utils.isAnObject('string')); // false
+```
+
+### isAnySQLInjection(data: any): boolean
+
 Checks for presence of UPDATE/DROP/DELETE/INSERT/CREATE (only on strings).
+
+**Example:**
+
+```js
+const utils = require('@acastellon/utils')();
+console.log(utils.isAnySQLInjection('DROP TABLE users')); // true
+console.log(utils.isAnySQLInjection('SELECT * FROM x')); // false
+console.log(utils.isAnySQLInjection(123)); // false
+```
 
 ## License
 
