@@ -1,6 +1,6 @@
 {
   "name": "@acastellon/utils",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Common function utils for javascript",
   "main": "utils.js",
   "scripts": {
