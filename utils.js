@@ -7,13 +7,16 @@
 // Author: Antonio Castellon
 //
 
+/**
+ * Factory returning a set of common predicate and validation utilities.
+ * @returns {object} model with the utility functions
+ */
 module.exports = function() {
 
   const model = {};
 
   const sqlInjectionKeys = ['UPDATE', 'DROP', 'DELETE', 'INSERT', 'CREATE'];
 
-  // ASSIGNATIONS
   model.existProperty = existProperty;
   model.isNotNull = isNotNull;
   model.isEmpty = isEmpty;
@@ -23,6 +26,11 @@ module.exports = function() {
   model.isAnObject = isAnObject;
   model.isAnySQLInjection = isAnySQLInjection;
 
+  /**
+   * Checks if a property is non-null, defined, and (if string) non-empty or a number.
+   * @param {*} prop
+   * @returns {boolean}
+   */
   function existProperty(prop) {
     return (prop != null
       && typeof prop != 'undefined'
@@ -33,15 +41,24 @@ module.exports = function() {
     );
   }
 
-  function isNotNull(data) {
+  /**
+   * @param {*} data
+   * @returns {boolean}
+   */
+  function isNotNull(data){
     return data != null && isNotEmpty(data);
   }
 
-  function isEmpty(data) {
+  function isEmpty(data){
     return !isNotEmpty(data);
   }
 
-  function isNotEmpty(data) {
+  /**
+   * Non-empty: defined, non-null, and (object with keys or stringified length >0)
+   * @param {*} data
+   * @returns {boolean}
+   */
+  function isNotEmpty(data){
     return (isNotUndefined(data)
       && (
         (isAnObject(data) && Object.keys(data).length != 0)
@@ -50,19 +67,25 @@ module.exports = function() {
     );
   }
 
-  function isNotUndefined(data) {
+  function isNotUndefined(data){
     return (typeof data != 'undefined') && (data != null);
   }
 
-  function isUndefined(data) {
+  function isUndefined(data){
     return (typeof data == 'undefined');
   }
 
-  function isAnObject(data) {
+  function isAnObject(data){
     return (typeof data == 'object');
   }
 
-  function isAnySQLInjection(data) {
+  /**
+   * Detects common SQL keywords (case sensitive per current impl).
+   * Safe for non-strings.
+   * @param {*} data
+   * @returns {boolean}
+   */
+  function isAnySQLInjection(data){
     if (typeof data != 'string') return false;
     return sqlInjectionKeys.some((el) => data.includes(el));
   }
